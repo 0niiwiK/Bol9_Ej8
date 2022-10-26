@@ -21,7 +21,7 @@ int main() {
     float importe, descuento;
     leer_distancia(&distancia);
     leer_fechas(&dia_ida,&mes_ida,&dia_vuelta,&mes_vuelta);
-    duracion=dias_transcurridos(dia_ida,dia_vuelta,mes_ida,mes_vuelta);
+    duracion=dias_transcurridos(dia_ida,mes_ida,dia_vuelta,mes_vuelta);
     importe=calcular_importe(distancia,duracion,&descuento);
     imprimir_resultado(importe,descuento);
     return 0;
@@ -38,8 +38,8 @@ int dias_transcurridos (int di,int mi,int dv,int mv){
     int dias=0;
     if (mv==mi)
         dias=dv-di;
-    else{
-        for (int i = mv; i > mi; i--) {
+    else
+        for (int i = mv; i >= mi; i--) {
             if (i==mv)
                 dias+= dv;
             else if (i==mi)
@@ -47,7 +47,6 @@ int dias_transcurridos (int di,int mi,int dv,int mv){
             else
                 dias+= dias_mes(i);
         }
-    }
     return dias;
 }
 
